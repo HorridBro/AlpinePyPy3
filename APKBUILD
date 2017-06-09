@@ -13,6 +13,7 @@ makedepends="python2 linux-headers libffi-dev pkgconf zlib-dev bzip2-dev
              gdbm-dev paxmark tk tk-dev py3-cffi py2-cffi xz xz-dev"
 subpackages="$pkgname-dev"
 source="https://bitbucket.org/pypy/pypy/downloads/$pkgname-v$pkgver-src.tar.bz2
+	dbremove.patch
 	tk.patch
 	conststdio.patch
         libpthread.patch
@@ -22,7 +23,7 @@ builddir="$srcdir/$pkgname-v$pkgver-src"
 
 build() {
 	cd "$builddir/pypy/goal"
-   	python2 ../../rpython/bin/rpython --opt=jit --nopax targetpypystandalone.py 
+    python2 ../../rpython/bin/rpython --opt=jit --nopax targetpypystandalone.py 
 }
 
 check() {
@@ -37,6 +38,7 @@ package() {
 }
 
 sha512sums="d78b4c899a5643028664365ed973a7b292a8e5b3989cc75203cd381ea3cda7dd73121c574726e23dca86e8364fcfcf42c372c9deee438c805f30d6e1c4ac115a  pypy3-v5.8.0-src.tar.bz2
+cbb2030be8882ce632367d49c3ec6895369a894c90532d8c3f20b4b0cdbd1b94c5b3473c4c7dcb462fa3961c1aa2488e8240f7dbdf78ac3400bfaa0114c9599d  dbremove.patch
 4758cd1ab96dbf1f3ced4553c04adb62b2aaf1528e0d98c8650fc489b7b09281187961662c94039a5303f3bfa8603ac10bce5a96f5d83a74cd6fc137f6afcb23  conststdio.patch
 4b48adbf0b8723ab1a7171494c4b40be696242abec047c1c2a9d071f639bf3b6b1b1b5b4aa602d2ece43dc4f06edf9b7087ad647c4ab9774a850335fdead313c  libpthread.patch
 2beb51cada368b041bc585c8196dea00bd8884a25ded376ac8fa097e79044405dfbd95ce1b6626f8e81cd4f950112d04ae98d5adf3b0e9e7327934419243e90d  nomandelbrot.patch
