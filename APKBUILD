@@ -22,7 +22,7 @@ builddir="$srcdir/$pkgname-v$pkgver-src"
 
 build() {
 	cd "$builddir/pypy/goal"
-    python2 ../../rpython/bin/rpython --opt=jit --nopax targetpypystandalone.py 
+   	python2 ../../rpython/bin/rpython --opt=jit --nopax targetpypystandalone.py 
 }
 
 check() {
